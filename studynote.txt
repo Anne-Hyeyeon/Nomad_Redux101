@@ -1,0 +1,88 @@
+[0.0 Introduction]
+Redux : JS application들의 상태를 관리하는 방법.
+
+* Redux는 React에 의존하는 라이브러리가 아님.
+
+[0.1 Requirements]
+Google Chrome, Github, node.js, VSC, React(hooks)
+
+[1.0 Vanilla Counter]
+바닐라 자바스크립트로 카운터를 만들어보자.
+html에 무언가가 바뀌었다고 알려주기 위해서는 코드를 열심히 짜야한다.
+하지만 리덕스를 사용하면, html에 뭔가가 바뀌었다고 알려주기 위해 함수를 쓰면 된다. (멋진 일)
+
+[1.1 Store and Reducer]
+- Redux를 설치해보자
+(yarn add redux) 
+
+- imort createStore from Redux
+store이란? 내 data, state를 넣는 곳
+
+- 문서 내에서 update 되는 값은 #number밖에 없고, 
+우리는 html에게 number의 값이 바뀔 때마다 알려주어야 한다.
+
+*코드설명*
+- countStore : 내 데이터 저장소
+
+- reducer
+1) 함수
+2) 내 state를 바꿔줌.
+3) 내 app에 있는 data를 return함.
+
+store에 내 데이터를 담고
+함수 돌려서 뱉어내는 값으로 내 데이터를 업데이트 시켜준다!
+
+- state에 초기값 설정 (state = 0)
+
+- .getState 
+출력!
+
+[1.2 Actions]
+- redux 함수의 parameter 
+state : 현재 상태 
+action : 뭘 할까낭?
+
+- count modifier에게 action 보내는 법
+
+- .dispatch()를 이용하면 된다.
+dispatch는 countModifier에 메시지를 보내준다.
+
+countModifier = (currentState = 0, { type: "HELLO" })
+
+
+1) data의 store를 만든다.
+2) data의 modifier를 알려준다.
+3) message를 dispatch를 이용해 modifier에 알려준다.
+4) 보내온 msg는 action에 들어가고
+5) action을 체크해본다.
+
+✅ Action : redux에서 function을 부를 때 쓰는 두 번째 parameter 혹은 argument으로 reducer와 소통하기 위한 방법
+✅ Reducer에게 Action을 보내는 방법 : store.dispatch({key: value});
+
+[1.3 Subscriptions]
+subscribe : 우리에게 store 안에 있는 변화들을 알게 해 준다.
+
+countStore.subscribe()
+이 상황에서 버튼을 누르면, store에 변화가 있다는 사실을 계속 알려줌.
+
+✅ Subscribe : store 안에 있는 변화 감지
+store.subscribe(func); // store안의 변화를 감지하면 func 실행
+
+
+[1.4 Recap, Refactor]
+< Recap >
+✅ reducer : 현재 상태의 application과 함께 불려지는 function (+ with action)
+return하는 것은 application의 state가 됨
+✅ action : reducer와 소통하는 방법으로 Object여야 하며 그 key 이름은 항상 type임 (바꿀 수 없음)
+✅ dispatch : reducer에게 action을 보내는 방법
+✅ subscribe : store의 변화를 감지하면 인자값으로 준 함수를 실행
+✅ switch가 자주 쓰임
+switch(action.type){
+case ..blah..:
+return smth
+case ..blah2..:
+return smth2
+default:
+return smth3
+}
+✅ string으로 바로 쓰는 대신에 const variable로 선언해서 사용하기 -> 에러 발견 용이
