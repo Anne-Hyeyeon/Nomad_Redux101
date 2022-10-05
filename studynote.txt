@@ -36,6 +36,9 @@ store에 내 데이터를 담고
 
 - .getState 
 출력!
+✅ Store는 data를 저장하는 곳
+✅ CreateStore는 reducer를 요구함.
+✅ Reducer는 data를 modify 해주는 함수로 reducer가 return하는 것은 application에 있는 data가 됨.
 
 [1.2 Actions]
 - redux 함수의 parameter 
